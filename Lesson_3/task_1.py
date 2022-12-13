@@ -1,4 +1,1 @@
-i = 0
-while i < 42:
-    print('I love Python')
-    i += 1
+print(42 * 'I love Python \n')

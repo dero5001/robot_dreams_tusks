@@ -1,16 +1,22 @@
-fib_sequence = [0, 1, 1]
+def rec_fibonacci(target_number, num1 = 0, num2 = 1, count = 1):
 
+    if target_number == 0:
+        return num1
+    elif target_number == 1:
+        return num2
 
-def rec_fibonacci(number, list):
-    if len(list) < number + 1:
-        list.append(list[-1] + list[-2])
-        return rec_fibonacci(number, list)
+    if count < target_number:
+        num3 = num1 + num2
+        num1 = num2
+        num2 = num3
+        count += 1
+        return rec_fibonacci(target_number, num1, num2, count)
     else:
-        return fib_sequence[number]
+        return num2
 
 
 target = int(input('Which number from Fibonacci Sequence do you want to see? '))
 
 
-result = rec_fibonacci(target, fib_sequence)
+result = rec_fibonacci(target)
 print(f'Requested number is {result}')

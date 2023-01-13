@@ -1,19 +1,24 @@
-fib_sequence = [0, 1, 1]
+def fib_gen(target_number):
+    num1 = 0
+    num2 = 1
+    count = 1
 
-
-def fib_gen(sequence_end, list):
-    while len(list) <= sequence_end:
-        list.append(list[-1] + list[-2])
-        yield list[-1]
+    while count < target_number:
+        num3 = num1 + num2
+        num1 = num2
+        num2 = num3
+        count += 1
+        yield num2, count
 
 
 target = int(input('Which number from Fibonacci Sequence do you want to see? '))
 
-if target <= (len(fib_sequence) - 1):
-    print(f'Requested number is {fib_sequence[target]}')
+if target == 0:
+    print('Requested number is 0')
+elif target == 1:
+    print('Requested number is 1')
 else:
-    fib_generator = fib_gen(target + 1, fib_sequence)
-    for item in fib_generator:
-        if len(fib_sequence) == target + 1:
-            print(f'Requested number is {fib_sequence[target]}')
+    for item in fib_gen(target):
+        if item[1] == target:
+            print(f'Requested number is {item[0]}')
             break

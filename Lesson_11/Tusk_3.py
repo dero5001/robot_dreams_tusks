@@ -6,6 +6,8 @@ class MyCtxManager:
     def __exit__(self, exc_type, exc_val, exc_tb):
         if exc_type:
             print(exc_val)
+            print('=' * 10)
+            return True
         print('=' * 10)
 
 

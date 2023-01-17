@@ -2,11 +2,11 @@ from time import ctime
 
 
 def func_decorator(func):
-    def inside_func():
+    def inside_func(*args, **kwargs):
         print(f'You call the function {func}')
-        func()
+        func(*args, **kwargs)
         print(f'This function was called at {ctime()}')
-    return inside_func()
+    return inside_func
 
 
 @func_decorator

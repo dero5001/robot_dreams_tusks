@@ -8,7 +8,7 @@ def fib_gen(target_number):
         num1 = num2
         num2 = num3
         count += 1
-        yield num2, count
+        yield num2
 
 
 target = int(input('Which number from Fibonacci Sequence do you want to see? '))
@@ -18,7 +18,4 @@ if target == 0:
 elif target == 1:
     print('Requested number is 1')
 else:
-    for item in fib_gen(target):
-        if item[1] == target:
-            print(f'Requested number is {item[0]}')
-            break
+    print(f'Requested number is {list(fib_gen(target))[-1]}')

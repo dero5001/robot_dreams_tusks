@@ -4,8 +4,9 @@ from time import ctime
 def func_decorator(func):
     def inside_func(*args, **kwargs):
         print(f'You call the function {func}')
-        func(*args, **kwargs)
+        result = func(*args, **kwargs)
         print(f'This function was called at {ctime()}')
+        return result
     return inside_func
 
 
@@ -15,6 +16,12 @@ def hello_func():
 
 
 @func_decorator
-def goodbye_func():
-    print('Goodbye!')
+def sum_func(*args):
+    result = 0
+    for i in args:
+        result += i
+    print(result)
 
+
+hello_func()
+sum_func(10, 1, 5, 15)

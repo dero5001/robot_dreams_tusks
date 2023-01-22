@@ -1,1 +1,0 @@
-The "<class 'BaseException'>" exception arised at Wed Jan 18 22:42:55 2023

@@ -3,9 +3,10 @@ from time import ctime
 
 def func_decorator(func):
     def inside_func(*args, **kwargs):
-        func(*args, **kwargs)
+        result = func(*args, **kwargs)
         with open("decorator_info.txt", 'a') as file:
             file.write(f'The function {func} was called at {ctime()}\n')
+        return result
     return inside_func
 
 

@@ -14,14 +14,15 @@ commands = ('You can use next commands:'
 print(commands)
 file_address = 'phone_book.txt'
 
-while True:
+try:
     with open(file_address, 'r') as file:
         json_data = file.read()
-    if json_data:
-        phone_list = json.loads(json_data)
-    else:
-        phone_list = {}
+    phone_list = json.loads(json_data)
+except FileNotFoundError:
+    phone_list = {}
 
+
+while True:
     command = input('Please enter a command: ').lower()
 
     if command == 'stats':
@@ -38,6 +39,11 @@ while True:
         phone_nr = input('Please enter a number: ')
         if phone_nr.isdigit():
             phone_list[name] = phone_nr
+            json_data = json.dumps(phone_list)
+
+            with open(file_address, 'w') as file:
+                file.write(json_data)
+
             print(f'The name {name} added')
         else:
             print('Only number required, please try again')
@@ -50,6 +56,11 @@ while True:
                 print('This name is not in list, try another one')
             else:
                 phone_list.pop(del_name[1:-1])
+                json_data = json.dumps(phone_list)
+
+                with open(file_address, 'w') as file:
+                    file.write(json_data)
+
                 print(f'Name "{del_name[1:-1]}" is deleted')
         else:
             print('Please use "<" and ">" around the name like it was shown.')
@@ -80,8 +91,3 @@ while True:
 
     else:
         print('Your command is unknown for me.\nIf you forgot command list just enter "commands"')
-
-    json_data = json.dumps(phone_list)
-
-    with open(file_address, 'w') as file:
-        file.write(json_data)

@@ -1,0 +1,7 @@
+The function <function hello_func at 0x0000021D32E6A200> was called at Wed Jan 18 22:03:50 2023
+The function <function goodbye_func at 0x0000021D32E6A200> was called at Wed Jan 18 22:03:50 2023
+The function <function hello_func at 0x0000021AFFF2A200> was called at Wed Jan 18 22:04:06 2023
+The function <function hello_func at 0x000001F45430A200> was called at Sun Jan 22 16:59:31 2023
+The function <function goodbye_func at 0x000001F45430A320> was called at Sun Jan 22 16:59:31 2023
+The function <function hello_func at 0x000001CD7B5EA200> was called at Sun Jan 22 16:59:40 2023
+The function <function goodbye_func at 0x000001CD7B5EA320> was called at Sun Jan 22 16:59:40 2023

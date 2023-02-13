@@ -36,40 +36,18 @@ while True:
             print('This name is already here')
             continue
 
-        while True:
-            phone_nr = input('Please enter a number: ')
+        phone_nr = input('Please enter a number: ')
 
-            if re.match('\+380[\d]{9}$', phone_nr):
-                phone_list[name] = phone_nr
-                json_data = json.dumps(phone_list)
+        if re.match('\+380[\d]{9}$', phone_nr) or re.match('380[\d]{9}$', phone_nr) or re.match('0[\d]{9}$', phone_nr):
+            phone_list[name] = phone_nr
+            json_data = json.dumps(phone_list)
 
-                with open(file_address, 'w') as file:
-                    file.write(json_data)
-                print(f'The name {name} added')
-                break
+            with open(file_address, 'w') as file:
+                file.write(json_data)
+            print(f'The name {name} added')
 
-            elif re.match('380[\d]{9}$', phone_nr):
-                phone_nr = '+' + phone_nr
-                phone_list[name] = phone_nr
-                json_data = json.dumps(phone_list)
-
-                with open(file_address, 'w') as file:
-                    file.write(json_data)
-                print(f'The name {name} added')
-                break
-
-            elif re.match('0[\d]{9}$', phone_nr):
-                phone_nr = '+38' + phone_nr
-                phone_list[name] = phone_nr
-                json_data = json.dumps(phone_list)
-
-                with open(file_address, 'w') as file:
-                    file.write(json_data)
-                print(f'The name {name} added')
-                break
-
-            else:
-                print('You input incorrect number, please try again')
+        else:
+            print('You input incorrect number, please try again')
 
     elif 'delete' in command:
         del_name = input('Please enter the name that you want to delete ')

@@ -3,4 +3,4 @@ CREATE TABLE IF NOT EXISTS users (
     first_name TEXT UNIQUE,
     last_name TEXT UNIQUE,
     age INTEGER DEFAULT 18
-)
+);

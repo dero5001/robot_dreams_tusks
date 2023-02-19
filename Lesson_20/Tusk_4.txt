@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    first_name TEXT UNIQUE,
-    last_name TEXT UNIQUE,
-    age INTEGER DEFAULT 18
+    first_name TEXT,
+    last_name TEXT,
+    age INTEGER DEFAULT 18,
+    UNIQUE (first_name, last_name)
 );

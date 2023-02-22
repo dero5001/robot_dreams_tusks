@@ -1,0 +1,9 @@
+INSERT INTO users (first_name, last_name, age) VALUES ('Roma', 'Denysiuks', 30);
+
+INSERT INTO users (first_name, last_name, age) VALUES ('Anton', 'Antoniv', 32);
+
+INSERT INTO users (first_name, last_name, age) VALUES ('Ivan', 'Ivanov', 23);
+
+INSERT INTO users (first_name, last_name, age) VALUES ('Marian', 'Homa', 45);
+
+INSERT INTO users (first_name, last_name, age) VALUES ('asd', 'qwr', 12);

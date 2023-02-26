@@ -1,0 +1,1 @@
+SELECT COUNT(id) AS more_than_30 FROM users WHERE age > 30 ;

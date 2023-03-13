@@ -1,0 +1,38 @@
+body{
+    margin-top: 50px;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+header{
+    position: fixed;
+    top: 0px;
+    background: grey;
+    z-index: 1;
+    width: 70%;
+}
+#face{
+    position: relative;
+    top: -150px;
+    left: 3%;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    background: white;
+    padding: 3px;
+    border-radius: 50%;
+    border: gray 1px solid;
+    }
+#introduction {
+    position: relative;
+    top: -150px;
+}
+.work {
+    position: relative;
+    top: 50px;
+    padding-bottom: 20px;
+}
+footer{
+    position: relative;
+    top: 100px;
+    padding-bottom: 50px;
+}

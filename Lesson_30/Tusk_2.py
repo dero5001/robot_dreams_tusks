@@ -1,18 +1,19 @@
 import requests
 
 
-city_name = "Kyiv"
-url = f"https://open-meteo.com/v1/geo?q={city_name}"
-response = requests.get(url)
-#latitude = response['data'][0]['latitude']
-#longitude = response['data'][0]['longitude']
-print(response)
+city_name = input('Введіть назву міста: ')
+geo_url = f'https://geocoding-api.open-meteo.com/v1/search?name={city_name}'
 
-#url = f"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}"
-#response = requests.get(url).json()
-#weather_data = response['current_weather']
+res_geo = requests.get(geo_url).json()
+data = res_geo["results"]
+longitude = data[0]['longitude']
+latitude = data[0]['latitude']
 
-#print(f"Поточна погода у місті {city_name}:")
-#print(f"Температура: {weather_data['temperature']}°C")
-#print(f"Вітер: {weather_data['wind']['speed']} м/с")
-#print(f"Вологість: {weather_data['humidity']}%")
+url = f"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&current_weather=true"
+res = requests.get(url).json()
+curren_weather = res['current_weather']
+
+print(f'Поточна погода у місті {city_name}:')
+print(f'Температура: {curren_weather["temperature"]}°C')
+print(f'Швидкість вітру: {curren_weather["windspeed"]} м/с')
+

@@ -1,5 +1,6 @@
 from app_data import app
 from flask import request, redirect
+import random
 
 
 @app.route('/')
@@ -15,15 +16,22 @@ def hello():
 
 @app.route('/users')
 def users():
-    return (
-        '<ul>'
-        '<li>Roman</li>'
-        '<li>Anton</li>'
-        '<li>Nazar</li>'
-        '<li>Dima</li>'
-        '<li>Andrii</li>'
-        '</ul>'
-    )
+    users_list = [
+        'Voldemort',
+        'Sirius Black',
+        'Remus Lupin',
+        'Neville Longbottom',
+        'Minerva McGonagall',
+        'Albus Dumbledore',
+        'Severus Snape'
+    ]
+
+    requested_list = '<ul>'
+    random_list = random.sample(users_list, random.randint(1, len(users_list)))
+    for user in random_list:
+        requested_list += f'<li>{user}</li>'
+    requested_list += '</ul>'
+    return requested_list
 
 
 @app.route('/users/<user_id>')
@@ -39,15 +47,22 @@ def users_id_check(user_id):
 
 @app.route('/books')
 def books():
-    return ('<ul>'
-    "<li>Harry Potter and the Philosopher's Stone</li>"
-    '<li>Harry Potter and the Chamber of Secrets</li>'
-    '<li>Harry Potter and the Prisoner of Azkaban</li>'
-    '<li>Harry Potter and the Goblet of Fire</li>'
-    '<li>Harry Potter and the Order of the Phoenix</li>'
-    '<li>Harry Potter and the Half-Blood Prince</li>'
-    '<li>Harry Potter and the Deathly Hallows</li>'
-    '</ul>')
+    books_list = [
+        "Harry Potter and the Philosopher's Stone",
+        'Harry Potter and the Chamber of Secrets',
+        'Harry Potter and the Prisoner of Azkaban',
+        'Harry Potter and the Goblet of Fire',
+        'Harry Potter and the Order of the Phoenix',
+        'Harry Potter and the Half-Blood Prince',
+        'Harry Potter and the Deathly Hallows'
+    ]
+
+    requested_list = '<ul>'
+    random_list = random.sample(books_list, random.randint(1, len(books_list)))
+    for book in random_list:
+        requested_list += f'<li>{book}</li>'
+    requested_list += '</ul>'
+    return requested_list
 
 
 @app.route('/books/<books_title>')

@@ -1,5 +1,9 @@
-from logging.config import dictConfig
 from flask import Flask
+from logging.config import dictConfig
+from .config import AppConfig
+
+
+app = Flask(__name__)
 
 dictConfig({
     "version": 1,
@@ -12,12 +16,6 @@ dictConfig({
     "root": {"handlers": ["console"], "level": "INFO"},
 })
 
-app = Flask(__name__)
+app.config.from_object(AppConfig)
 
-@app.route('/hello')
-def hello():
-    app.logger.info(f'Hello func was called')
-    return 'Hello World!'
-
-
-app.run()
+from .views import *

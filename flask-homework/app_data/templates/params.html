@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Params</title>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'table.css')}}">
+</head>
+<body>
+    <div>Hello {{username}}</div>
+    <table>
+        <tr><th>Parameter</th><th>Value</th></tr>
+        {% for key, value in list %}
+            <tr><th>{{key}}</th><th>{{value}}</th></tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

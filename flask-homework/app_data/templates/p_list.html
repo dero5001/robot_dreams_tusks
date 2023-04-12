@@ -7,8 +7,8 @@
 <body>
     <div>Hello {{username}}</div>
     <ul>
-        {% for item in list %}
-            <li>{{item.id}}: {{item.name}}</li>
+        {% for purchase in list %}
+            <li>{{purchase.id}}: {{purchase.user.name}}  has bought "{{purchase.book.name}}" book</li>
         {% endfor %}
     </ul>
 </body>

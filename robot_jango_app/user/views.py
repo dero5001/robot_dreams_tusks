@@ -1,5 +1,7 @@
 from django.http import HttpResponse
+from user.models import User
 
 
-def user_view(request):
-    return HttpResponse('Hello, Users!')
+def my_view(request):
+    return HttpResponse(User.objects.all())
+

@@ -1,10 +1,9 @@
 from django.http import HttpResponse
 from django.core import serializers
-from user.models import User
+from book.models import Book
 
 
 def my_view(request):
-    users = User.objects.all()
-    result = serializers.serialize('json', users)
+    books = Book.objects.all()
+    result = serializers.serialize('json', books)
     return HttpResponse(result, content_type="application/json")
-

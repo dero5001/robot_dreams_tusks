@@ -1,10 +1,9 @@
 from django.http import HttpResponse
 from django.core import serializers
-from user.models import User
+from purchase.models import Purchase
 
 
 def my_view(request):
-    users = User.objects.all()
-    result = serializers.serialize('json', users)
+    purchases = Purchase.objects.all()
+    result = serializers.serialize('json', purchases)
     return HttpResponse(result, content_type="application/json")
-

@@ -8,3 +8,6 @@ class User(models.Model):
 
     class Meta:
         db_table = 'user'
+
+    def __str__(self):
+        return f'User with ID: {self.id} is {self.first_name} {self.last_name}, has {self.age} years'

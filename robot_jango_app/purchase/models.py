@@ -4,8 +4,8 @@ from book.models import Book
 
 
 class Purchase(models.Model):
-    user = models.ManyToManyField(User)
-    book = models.ManyToManyField(Book)
+    user = models.ForeignKey(User, related_name='purchases', on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, related_name='purchases', on_delete=models.CASCADE)
     purchase_date = models.DateField()
 
     class Meta:

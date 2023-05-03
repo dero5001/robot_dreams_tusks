@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Purchase List</title>
+</head>
+<body>
+    <div>
+        {% for purchase in object_list %}
+            {{purchase.id}} {{purchase.book.title}} {{purchase.user.first_name}} {{purchase.purchase_date}} <br>
+        {% endfor %}
+    </div>
+</body>
+</html>

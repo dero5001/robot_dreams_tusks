@@ -1,9 +1,19 @@
-from django.http import HttpResponse
-from django.core import serializers
-from purchase.models import Purchase
+from .models import Purchase
+from .forms import PurchaseForm
+from django.views.generic import ListView, DetailView, CreateView
 
 
-def my_view(request):
-    purchases = Purchase.objects.all()
-    result = serializers.serialize('json', purchases)
-    return HttpResponse(result, content_type="application/json")
+class PurchaseList(ListView):
+    model = Purchase
+
+
+class DetailPurchase(DetailView):
+    model = Purchase
+
+
+class CreatePurchase(CreateView):
+    model = Purchase
+    form_class = PurchaseForm
+    success_url = '/purchases'
+
+

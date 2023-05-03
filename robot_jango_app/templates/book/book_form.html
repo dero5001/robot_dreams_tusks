@@ -1,0 +1,12 @@
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+<div style = 'margin: 10px'>
+    <form action="/books/create" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <br>
+        <div class="form-group">
+            <input class="btn btn-succes" type="submit" value="Submit">
+        </div>
+    </form>
+</div>

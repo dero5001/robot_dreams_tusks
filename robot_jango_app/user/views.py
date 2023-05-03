@@ -1,10 +1,18 @@
-from django.http import HttpResponse
-from django.core import serializers
-from user.models import User
+from django.views.generic import ListView, DetailView, CreateView
+from .models import User
+from .forms import UserForm
 
 
-def my_view(request):
-    users = User.objects.all()
-    result = serializers.serialize('json', users)
-    return HttpResponse(result, content_type="application/json")
+class UsersList(ListView):
+    model = User
+
+
+class DetailUser(DetailView):
+    model = User
+
+
+class CreateUser(CreateView):
+    model = User
+    form_class = UserForm
+    success_url = '/users'
 

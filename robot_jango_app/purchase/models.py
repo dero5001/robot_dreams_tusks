@@ -4,9 +4,12 @@ from book.models import Book
 
 
 class Purchase(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='purchases', on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, related_name='purchases', on_delete=models.CASCADE)
     purchase_date = models.DateField()
 
     class Meta:
         db_table = 'purchase'
+
+    def __str__(self):
+        return f'Purchase № {self.id} for the book {self.book.title} was done at {self.purchase_date} by {self.user.first_name}'

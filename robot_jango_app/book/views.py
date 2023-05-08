@@ -1,7 +1,6 @@
-from django.http import HttpResponse
-from django.core import serializers
-from book.models import Book
-from django.views.generic import ListView, DetailView
+from .models import Book
+from .forms import BookForm
+from django.views.generic import ListView, DetailView, CreateView
 
 
 class BooksList(ListView):
@@ -11,3 +10,8 @@ class BooksList(ListView):
 class DetailBook(DetailView):
     model = Book
 
+
+class CreateBook(CreateView):
+    model = Book
+    form_class = BookForm
+    success_url = '/books'

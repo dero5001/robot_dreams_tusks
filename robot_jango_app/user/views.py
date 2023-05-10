@@ -1,8 +1,13 @@
 from django.views.generic import ListView, DetailView, CreateView
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.pagination import PageNumberPagination
 from .models import User
 from .forms import UserForm
 from .serializers import UserSerializer
+
+
+class CustomPaginator(PageNumberPagination):
+    page_size_query_param = 'page_size'
 
 
 class UsersList(ListView):
@@ -22,4 +27,5 @@ class CreateUser(CreateView):
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    pagination_class = CustomPaginator
 

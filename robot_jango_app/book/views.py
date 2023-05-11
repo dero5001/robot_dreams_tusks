@@ -1,9 +1,17 @@
-from django.http import HttpResponse
-from django.core import serializers
-from book.models import Book
+from .models import Book
+from django.views.generic import ListView, DetailView, CreateView
+from .forms import BookForm
 
 
-def my_view(request):
-    books = Book.objects.all()
-    result = serializers.serialize('json', books)
-    return HttpResponse(result, content_type="application/json")
+class BooksList(ListView):
+    model = Book
+
+
+class DetailBook(DetailView):
+    model = Book
+
+
+class CreateBook(CreateView):
+    model = Book
+    form_class = BookForm
+    success_url = '/books'

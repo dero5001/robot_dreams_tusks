@@ -1,0 +1,21 @@
+table {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  border-collapse: collapse;
+  background-color: white;
+}
+td, th {
+  border: 1px solid black;
+}
+th {
+  background: white;
+  color: black;
+  padding: 5px;
+}
+.main{
+  background-color: royalblue;
+}
+caption {
+    font-size: 150%;
+}

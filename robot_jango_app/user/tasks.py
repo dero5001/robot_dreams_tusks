@@ -9,12 +9,12 @@ def hello_tusk():
 
 @shared_task
 def purchases_count(user_id):
-    purchases = User.purchases.filter(id=user_id)
-    print(purchases.count())
+    user = User.objects.get(id=user_id)
+    print(user.purchases.count())
 
 
 @shared_task
 def users_count():
     users = User.objects.all()
-    print(users)
+    print(users.count())
 

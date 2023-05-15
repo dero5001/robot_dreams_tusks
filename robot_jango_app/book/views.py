@@ -1,6 +1,6 @@
 from .models import Book
-from .forms import BookForm
 from django.views.generic import ListView, DetailView, CreateView
+from .forms import BookForm
 
 
 class BooksList(ListView):

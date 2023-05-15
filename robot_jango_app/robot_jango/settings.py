@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'purchase.apps.PurchaseConfig',
     'django_bootstrap5',
     'rest_framework',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -80,6 +81,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'robot_jango.wsgi.application'
+
+
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 5,
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
+    ]
+}
 
 
 # Database

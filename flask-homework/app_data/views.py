@@ -1,9 +1,12 @@
+from dotenv import load_dotenv
 from app_data import app
 from flask import request, redirect, render_template, session
-import  random
+from .models import User, Book, Purchase
+import random
+import os
 
-
-app.secret_key = b'robot'
+load_dotenv()
+app.secret_key = os.getenv('SECRET_KEY')
 
 
 @app.route('/')
@@ -21,18 +24,8 @@ def hello():
 def users():
     current_user = session.get('user')
     if current_user:
-        users_list = ['Voldemort',
-                      'Sirius Black',
-                      'Remus Lupin',
-                      'Neville Longbottom',
-                      'Minerva McGonagall',
-                      'Albus Dumbledore',
-                      'Severus Snape']
-        requested_list = []
-        random_list = random.sample(users_list, random.randint(1, len(users_list)))
-        for user in random_list:
-            requested_list += (user,)
-        return render_template('list.html', name='Users', list=requested_list, username=current_user)
+        users_list = User.query.all()
+        return render_template('list.html', name='Users', list=users_list, username=current_user)
     else:
         return redirect('/login')
 
@@ -41,8 +34,10 @@ def users():
 def users_id_check(user_id):
     current_user = session.get('user')
     if current_user:
-        if int(user_id) % 2 == 0:
-            return render_template('user_id.html', name=f'User: {user_id}', user_id=user_id, username=current_user)
+        users_list = User.query.all()
+        for user in users_list:
+            if user.id == user_id:
+                return render_template('user_id.html', user_id=user.id, name=user.name, username=current_user)
         else:
             return '', 404
     else:
@@ -53,29 +48,22 @@ def users_id_check(user_id):
 def books():
     current_user = session.get('user')
     if current_user:
-        books_list = [
-            "Harry Potter and the Philosopher's Stone",
-            'Harry Potter and the Chamber of Secrets',
-            'Harry Potter and the Prisoner of Azkaban',
-            'Harry Potter and the Goblet of Fire',
-            'Harry Potter and the Order of the Phoenix',
-            'Harry Potter and the Half-Blood Prince',
-            'Harry Potter and the Deathly Hallows'
-        ]
-        requested_list = []
-        random_list = random.sample(books_list, random.randint(1, len(books_list)))
-        for book in random_list:
-            requested_list += (book,)
-        return render_template('list.html', name='Books', list=requested_list, username=current_user)
+        books_list = Book.query.all()
+        return render_template('list.html', name='Books', list=books_list, username=current_user)
     else:
         return redirect('/login')
 
 
-@app.route('/books/<books_title>')
-def books_title_check(books_title):
+@app.route('/books/<int:book_id>')
+def books_title_check(book_id):
     current_user = session.get('user')
     if current_user:
-        return render_template('new_book.html', name=f'{books_title}', book_name=books_title, username=current_user)
+        books_list = Book.query.all()
+        for book in books_list:
+            if book.id == book_id:
+                return render_template('book_id.html', book_id=book.id, name=book.name, username=current_user)
+        else:
+            return '', 404
     else:
         return redirect('/login')
 
@@ -100,3 +88,27 @@ def login_page():
             return redirect('/users')
     else:
         return 'Password incorrect', 404
+
+
+@app.route('/purchases')
+def get_purchases():
+    current_user = session.get('user')
+    if current_user:
+        purchases_list = Purchase.query.all()
+        return render_template('p_list.html', name='purchases', list=purchases_list, username=current_user)
+    else:
+        return redirect('/login')
+
+
+@app.route('/purchases/<int:purchase_id>')
+def current_purchase(purchase_id):
+    current_user = session.get('user')
+    if current_user:
+        purchases_list = Purchase.query.all()
+        for purchase in purchases_list:
+            if purchase.id == purchase_id:
+                return render_template('purchase_id.html', purchase=purchase, username=current_user)
+        else:
+            return '', 404
+    else:
+        return redirect('/login')
